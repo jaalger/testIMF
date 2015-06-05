@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A188D465-A374-482A-AD2C-92F8AF20FA25</string>
+	<key>IDESourceControlProjectName</key>
+	<string>helloWorld</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B138AC3694B00F8BB18BD1ED6FE5D366056A2AEC</key>
+		<string>https://hub.jazz.net/git/mobilecloud/imf-helloWorld</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>helloWorld_objective_c/helloWorld.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B138AC3694B00F8BB18BD1ED6FE5D366056A2AEC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://hub.jazz.net/git/mobilecloud/imf-helloWorld</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B138AC3694B00F8BB18BD1ED6FE5D366056A2AEC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B138AC3694B00F8BB18BD1ED6FE5D366056A2AEC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>imf-helloWorld</string>
+		</dict>
+	</array>
+</dict>
+</plist>
