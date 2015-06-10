@@ -13,9 +13,9 @@
 // limitations under the License.
 
 #import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 #import <IMFCore/IMFCore.h>
 #import <IMFPush/IMFPush.h>
-#import <IMFPush/IMFPushClient.h>
 @interface AppDelegate ()
 @property IMFLogger *logger;
 
@@ -27,10 +27,12 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     IMFClient *imfClient = [IMFClient sharedInstance];
-    [imfClient initializeWithBackendRoute:@"https://bluelistjan2015.mybluemix.net" backendGUID:@"a4b9ee01-cd30-4589-94a4-280b2f16f923"];
+    [imfClient initializeWithBackendRoute:@"https://testpushjaa.mybluemix.net" backendGUID:@"1cb0f3a3-ecde-4ef7-90a0-e983449e25b9"];
     
     //initialize push:
-    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:
+     [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound |UIUserNotificationTypeAlert |UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 
     return YES;
 }
@@ -58,10 +60,30 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 -(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    // get Push instance
+
+    IMFPushClient* push = [IMFPushClient sharedInstance];
+    // set current working environment
+
     
-   }
+    [push registerDeviceToken:deviceToken completionHandler:^(IMFResponse *response, NSError *error) {
+        
+        IMFLogger *logger = [IMFLogger loggerForName:@"AppDelegate"];
+        
+        if (error){
+            [logger logErrorWithMessages:@"error registering for push notifications: %@", error.description];
+        } else {
+            [logger logDebugWithMessages:@"registered for push notifications."];
+        }
+    }];   }
     -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
         //userInfo dictionary will contain data sent from server.
-   
+        
+        NSDictionary *notification = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+        NSString *body = [notification objectForKey:@"body"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification Received"
+        message:body delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
     }
 @end

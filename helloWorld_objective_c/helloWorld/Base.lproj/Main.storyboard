@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztL-97-gYC">
-                                <rect key="frame" x="124" y="187" width="352" height="30"/>
+                                <rect key="frame" x="124" y="203" width="352" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="L5H-eG-Hdy"/>
                                 </constraints>
@@ -26,9 +26,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWy-CC-dtx">
-                                <rect key="frame" x="124" y="130" width="352" height="49"/>
+                                <rect key="frame" x="124" y="130" width="352" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="1yH-NX-Ul2"/>
+                                    <constraint firstAttribute="height" constant="65" id="1yH-NX-Ul2"/>
                                     <constraint firstAttribute="width" constant="352" id="Lzb-bf-cey"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="53"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b70-JP-FN6">
-                                <rect key="frame" x="150" y="225" width="300" height="85"/>
+                                <rect key="frame" x="150" y="241" width="300" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="68h-9L-yPE"/>
                                     <constraint firstAttribute="height" constant="85" id="b3o-jM-u5J"/>
@@ -59,14 +59,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bh-cl-yaI">
+                                <rect key="frame" x="197" y="508" width="207" height="35"/>
+                                <color key="backgroundColor" red="0.10980392160000001" green="0.69803921570000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="N7J-8R-4GU"/>
+                                    <constraint firstAttribute="width" constant="207" id="Pyy-5w-8yM"/>
+                                </constraints>
+                                <state key="normal" title="TEST PUSH">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testPush:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZUI-gq-A7i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960784313725" green="0.20392156862745098" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="ztL-97-gYC" secondAttribute="centerX" id="6PM-Wg-qpx"/>
                             <constraint firstAttribute="centerX" secondItem="WWy-CC-dtx" secondAttribute="centerX" id="TeZ-Q3-35G"/>
+                            <constraint firstItem="0bh-cl-yaI" firstAttribute="top" secondItem="jpf-3g-dAH" secondAttribute="bottom" constant="8" symbolic="YES" id="UpF-lW-FUR"/>
                             <constraint firstItem="WWy-CC-dtx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="110" id="XPO-MY-3o9"/>
                             <constraint firstItem="b70-JP-FN6" firstAttribute="top" secondItem="ztL-97-gYC" secondAttribute="bottom" constant="8" symbolic="YES" id="Zd0-Vy-BcV"/>
+                            <constraint firstItem="0bh-cl-yaI" firstAttribute="leading" secondItem="jpf-3g-dAH" secondAttribute="leading" id="aKk-8t-me9"/>
                             <constraint firstItem="b70-JP-FN6" firstAttribute="centerX" secondItem="ztL-97-gYC" secondAttribute="centerX" id="ede-jA-kA1"/>
                             <constraint firstItem="WWy-CC-dtx" firstAttribute="leading" secondItem="ztL-97-gYC" secondAttribute="leading" id="rbY-ar-3WC"/>
                             <constraint firstItem="jpf-3g-dAH" firstAttribute="centerX" secondItem="ztL-97-gYC" secondAttribute="centerX" id="sGn-3W-Vtk"/>
@@ -78,6 +94,7 @@
                         <outlet property="bottomLabel" destination="ztL-97-gYC" id="zo4-WS-Dkt"/>
                         <outlet property="errorTextView" destination="b70-JP-FN6" id="TMU-Yv-Q8L"/>
                         <outlet property="pingButton" destination="jpf-3g-dAH" id="QGi-I7-bHz"/>
+                        <outlet property="pushButton" destination="0bh-cl-yaI" id="Gp7-gj-g7S"/>
                         <outlet property="topLabel" destination="WWy-CC-dtx" id="aYE-Tk-ZgO"/>
                     </connections>
                 </viewController>

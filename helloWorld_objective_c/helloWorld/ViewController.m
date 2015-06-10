@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *pingButton;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *errorTextView;
+@property (weak, nonatomic) IBOutlet UIButton *pushButton;
 
 @end
 
@@ -70,4 +71,54 @@
      }];
     [IMFLogger send];
 }
+- (IBAction)testPush:(id)sender {
+    _pushButton.backgroundColor =[UIColor colorWithRed:0.0/255.0 green:174.0/255.0 blue:211.0/255.0 alpha:1];
+
+    IMFAuthorizationManager *authManager = [IMFAuthorizationManager sharedInstance];
+    [authManager obtainAuthorizationHeaderWithCompletionHandler:^(IMFResponse *response, NSError *error) {
+        if (error==nil)
+        {
+            _topLabel.text = @"Testing Push";
+            _bottomLabel.text = @"You Should Recieve an Alert";
+            _errorTextView.text = @"";
+            
+            NSString *jsonBody = @"{\"message\": {\"alert\": \"Here is a push notification from the Bluemix Push Service\", \"url\": \"https://www.bluemix.net\"},\"settings\": {\"apns\": { \"payload\": \"object\",\"badge\": 3,\"sound\": \"\",\"iosActionKey\": \"\",\"type\": \"DEFAULT\",\"category\": \"\"}}}";
+            
+            NSData *data = [jsonBody dataUsingEncoding:NSUTF8StringEncoding];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://imfpush.ng.bluemix.net/imfpush/v1/apps/1cb0f3a3-ecde-4ef7-90a0-e983449e25b9/messages"]];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:data];
+
+            [request setValue:response.authorizationHeader forHTTPHeaderField:@"Authorization"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *restResponse, NSData *returnedData, NSError *error)
+             {
+                 if (error == nil)
+                 {
+                     NSString *responseString = [[NSString alloc] initWithData:returnedData encoding:NSUTF8StringEncoding];
+                     NSLog(@"Returned Data:%@",responseString);
+                     NSLog(@"URL Response:%@",restResponse);
+                 }
+                 else {
+                     NSLog(@"%@", error);
+                 }
+             }];
+        } else
+        {
+            NSLog(@"%@",error);
+            _topLabel.text = @"Bummer";
+            _bottomLabel.text = @"Something Went Wrong";
+            if (error.localizedDescription!=nil){
+                NSString *errorMsg =  [NSString stringWithFormat: @"%@ Please verify the Bundle Identifier, Bundle Version, ApplicationRoute and ApplicationID.", error.localizedDescription];
+                _errorTextView.text = errorMsg;
+            }
+        }
+        _pushButton.backgroundColor=[UIColor colorWithRed:28.0/255.0 green:178.0/255.0 blue:153.0/255.0 alpha:1];
+        
+    }];
+
+
+}
+
 @end
